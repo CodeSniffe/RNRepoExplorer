@@ -1,10 +1,18 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import { View, Text } from 'react-native';
+import { RepoListContainer } from '../../containers/RepoList';
 
 export const HomeScreen = () => {
+  //===================> VARIABLES
+  //===================> HOOKS
+  //===================> EVENTS
+  //===================> USE EFFECT
+
+  //===================> VIEWS
   return (
     <View>
-      <Text>HomeScreen</Text>
+        {/* TODO: INTEGRATE WITH API */}
+      <RepoListContainer />
     </View>
   );
 };

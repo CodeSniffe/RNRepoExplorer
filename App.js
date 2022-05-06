@@ -1,11 +1,13 @@
+import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import { View, Text } from 'react-native';
+import { BottomTabNavigator } from './navigation/Tab';
 
 const App = () => {
   return (
-    <View>
-      <Text>123</Text>
-    </View>
+    // TODO: SIGN IN
+    <NavigationContainer>
+      <BottomTabNavigator />
+    </NavigationContainer>
   );
 };
 
