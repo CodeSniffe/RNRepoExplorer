@@ -2,6 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { HomeScreen, SearchScreen } from '../../screens';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { HomeStack } from '../Stack';
 
 const Tab = createBottomTabNavigator();
 
@@ -23,7 +24,7 @@ export const BottomTabNavigator = () => {
       })}>
       <Tab.Screen
         name="homeStack"
-        component={HomeScreen}
+        component={HomeStack}
         options={{ tabBarLabel: 'Home' }}
       />
       <Tab.Screen
