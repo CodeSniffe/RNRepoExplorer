@@ -2,7 +2,8 @@ import { StyleSheet } from 'react-native';
 import { COLORS } from '../../lib/constants/COLORS';
 
 export const styles = StyleSheet.create({
-  container: {
+  wrapper: {
     backgroundColor: COLORS.black,
   },
+  title: { fontSize: 20, color: COLORS.blue },
 });

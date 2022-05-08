@@ -2,6 +2,9 @@ import { StyleSheet } from 'react-native';
 import { COLORS } from '../../lib/constants/COLORS';
 
 export const styles = StyleSheet.create({
+  container: {
+    padding: 10,
+  },
   card: {
     shadowColor: '#000',
     shadowOffset: {
@@ -12,13 +15,19 @@ export const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
     borderRadius: 20,
-    margin: 5,
-    padding: 20,
+    margin: 8,
+    padding: 15,
     backgroundColor: COLORS.black,
+    borderWidth: 1,
+    borderColor: COLORS.silver,
   },
   nameLabel: {
-    fontSize: 16,
+    fontSize: 18,
     color: COLORS.blue,
-    fontWeight:'bold'
+    fontWeight: 'bold',
+  },
+  descriptionLabel: {
+    color: COLORS.gray,
+    fontSize: 14,
   },
 });
