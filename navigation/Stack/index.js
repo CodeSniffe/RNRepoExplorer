@@ -1,6 +1,7 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { HomeScreen, RepoDetailsScreen } from '../../screens';
+import { COLORS } from '../../lib/constants/COLORS';
 
 const Stack = createNativeStackNavigator();
 
@@ -11,7 +12,15 @@ export const HomeStack = () => {
       <Stack.Screen
         name="details"
         component={RepoDetailsScreen}
-        options={{ headerShown: true }}
+        options={({ route }) => ({
+          headerShown: true,
+          // title: `react-native-community/${route.params.item.name}`,
+          title: 'Details',
+          headerTitleStyle: { fontSize: 22 },
+          headerStyle: { backgroundColor: COLORS.black },
+          headerTintColor: COLORS.white,
+          headerLargeTitle: true,
+        })}
       />
     </Stack.Navigator>
   );

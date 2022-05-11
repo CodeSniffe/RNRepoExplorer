@@ -9,14 +9,14 @@ import { Divider } from '../../components';
 
 export const RepoListContainer = props => {
   //======================> VARIABLES
-  const { data } = props;
+  const { data,loadMore } = props;
   const navigation = useNavigation();
 
   //===================> EVENTS
   const renderRepoList = ({ item }) => {
     return (
       // TODO: NAVIGATE TO DETAILS
-      <TouchableOpacity
+      <TouchableOpacity key={item.id}
         onPress={() => navigation.navigate('details', { item })}>
         <View style={styles.card}>
           <Text style={styles.nameLabel}>{item.name}</Text>
@@ -42,9 +42,11 @@ export const RepoListContainer = props => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={dummyData}
+        data={data}
         renderItem={renderRepoList}
         showsVerticalScrollIndicator={false}
+        onEndReached={loadMore}
+        onEndReachedThreshold={0.1}
       />
     </View>
   );

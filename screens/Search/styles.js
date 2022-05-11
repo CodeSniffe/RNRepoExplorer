@@ -3,7 +3,10 @@ import { COLORS } from '../../lib/constants/COLORS';
 
 export const styles = StyleSheet.create({
   container: {
-    backgroundColor: COLORS.black,
-    flex:1
+    padding: 10,
+    flex: 1,
+  },
+  resultsLabel: {
+    color: COLORS.white,
   },
 });

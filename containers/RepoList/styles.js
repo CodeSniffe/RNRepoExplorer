@@ -4,6 +4,7 @@ import { COLORS } from '../../lib/constants/COLORS';
 export const styles = StyleSheet.create({
   container: {
     padding: 10,
+    flex:1
   },
   card: {
     shadowColor: '#000',
@@ -18,7 +19,7 @@ export const styles = StyleSheet.create({
     margin: 8,
     padding: 15,
     backgroundColor: COLORS.black,
-    borderWidth: 1,
+    borderWidth: 0.5,
     borderColor: COLORS.silver,
   },
   nameLabel: {

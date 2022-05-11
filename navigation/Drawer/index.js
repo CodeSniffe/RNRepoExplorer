@@ -4,6 +4,7 @@ import { SearchScreen } from '../../screens';
 import { HomeStack } from '../Stack';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { COLORS } from '../../lib/constants/COLORS';
+import { SearchStack } from '../Stack/SearchStack';
 
 const Drawer = createDrawerNavigator();
 
@@ -42,7 +43,7 @@ export const DrawerNavigator = () => {
       />
       <Drawer.Screen
         name="search1"
-        component={SearchScreen}
+        component={SearchStack}
         options={{ drawerLabel: 'Explore' }}
       />
     </Drawer.Navigator>

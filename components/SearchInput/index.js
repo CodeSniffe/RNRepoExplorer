@@ -5,7 +5,9 @@ import { COLORS } from '../../lib/constants/COLORS';
 import { View } from 'react-native';
 import { TouchableOpacity } from 'react-native';
 
-export const SearchInput = (props) => {
+export const SearchInput = props => {
+  const { filter } = props;
+
   return (
     <View>
       <Input
@@ -17,6 +19,7 @@ export const SearchInput = (props) => {
           </TouchableOpacity>
         }
         inputStyle={{ color: COLORS.blue }}
+        onChangeText={text => filter(text)}
       />
     </View>
   );
