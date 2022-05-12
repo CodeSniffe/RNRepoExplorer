@@ -9,14 +9,16 @@ import { Divider } from '../../components';
 
 export const RepoListContainer = props => {
   //======================> VARIABLES
-  const { data,loadMore } = props;
+  const { page,loadMore } = props;
+  const { data, error, isListEnd, moreLoding, loading } = props.data;
   const navigation = useNavigation();
 
   //===================> EVENTS
   const renderRepoList = ({ item }) => {
     return (
       // TODO: NAVIGATE TO DETAILS
-      <TouchableOpacity key={item.id}
+      <TouchableOpacity
+        key={item.id}
         onPress={() => navigation.navigate('details', { item })}>
         <View style={styles.card}>
           <Text style={styles.nameLabel}>{item.name}</Text>

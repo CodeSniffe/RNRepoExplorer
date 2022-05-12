@@ -9,15 +9,19 @@ import { Header } from '@rneui/base';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { getReposRequest } from '../../store/actions';
 
 export const HomeScreen = () => {
   //===================> VARIABLES
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const RepoList = useSelector(state => state.repos);
 
   //===================> HOOKS
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [page, setPage] = useState(1);
+  const [{page, setPage}] = useState(1);
 
   //===================> EVENTS
   const getDatas = async () => {
@@ -37,10 +41,22 @@ export const HomeScreen = () => {
       });
   };
 
+  const requestRepoDatas = () => {
+    dispatch(getReposRequest({ page: page }));
+    console.log(page);
+  };
+
+  const loadMoreData = () => {
+    const listEnded = useSelector(state => state.repos.moreLoading);
+    if (listEnded) {
+      setPage(page + 1);
+    }
+  };
+
   //===================> USE EFFECT
   useEffect(() => {
-    getDatas();
-  }, []);
+    requestRepoDatas();
+  }, [page]);
 
   //===================> VIEWS
   return (
@@ -70,7 +86,11 @@ export const HomeScreen = () => {
           style={{ justifyContent: 'center', flex: 0.5 }}
         />
       ) : (
-        <RepoListContainer loadMore={() => getDatas()} data={data} />
+        <RepoListContainer
+          page={page}
+          loadMore={() => loadMoreData()}
+          data={RepoList}
+        />
       )}
     </View>
   );
