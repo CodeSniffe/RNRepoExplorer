@@ -1,5 +1,11 @@
 import React from 'react';
-import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  ActivityIndicator,
+} from 'react-native';
 import { dummyData } from '../../lib/data';
 import { styles } from './styles';
 import moment from 'moment';
@@ -9,8 +15,8 @@ import { Divider } from '../../components';
 
 export const RepoListContainer = props => {
   //======================> VARIABLES
-  const { page,loadMore } = props;
-  const { data, error, isListEnd, moreLoding, loading } = props.data;
+  const { page, loadMore } = props;
+  const { data, error, isListEnd, moreLoading, loading } = props.data;
   const navigation = useNavigation();
 
   //===================> EVENTS
@@ -24,21 +30,19 @@ export const RepoListContainer = props => {
           <Text style={styles.nameLabel}>{item.name}</Text>
           <Divider color={COLORS.gray} />
           <Text style={styles.descriptionLabel}>{item.description}</Text>
-          {/* <Text
-            style={[
-              styles.nameLabel,
-              {
-                color: COLORS.silver,
-
-                alignSelf: 'flex-end',
-              },
-            ]}>
-            Updated {moment(item.updated_at).fromNow()}
-          </Text> */}
         </View>
       </TouchableOpacity>
     );
   };
+
+  const renderFooter = () => (
+    <View style={styles.footerWrapper}>
+      {moreLoading && <ActivityIndicator color={COLORS.blue} size={26}/>}
+      {isListEnd && (
+        <Text style={styles.footerLabel}>No more articles at the moment</Text>
+      )}
+    </View>
+  );
 
   //===================> VIEWS
   return (
@@ -47,6 +51,7 @@ export const RepoListContainer = props => {
         data={data}
         renderItem={renderRepoList}
         showsVerticalScrollIndicator={false}
+        ListFooterComponent={renderFooter}
         onEndReached={loadMore}
         onEndReachedThreshold={0.1}
       />

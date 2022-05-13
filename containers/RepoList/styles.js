@@ -31,4 +31,12 @@ export const styles = StyleSheet.create({
     color: COLORS.gray,
     fontSize: 14,
   },
+  footerWrapper:{
+    alignItems:'center',
+    justifyContent:'center'
+  },
+  footerLabel:{
+    fontSize:12,
+    color:COLORS.white
+  }
 });

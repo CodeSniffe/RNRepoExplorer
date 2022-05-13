@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ActivityIndicator,
+  FlatList,
+} from 'react-native';
 import { RepoListContainer } from '../../containers/RepoList';
 import { styles } from './styles';
 import { COLORS } from '../../lib/constants/COLORS';
-import { SearchInput } from '../../components/SearchInput';
 import { Divider } from '../../components';
 import { Header } from '@rneui/base';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -20,8 +25,8 @@ export const HomeScreen = () => {
 
   //===================> HOOKS
   const [data, setData] = useState([]);
+  const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
-  const [{page, setPage}] = useState(1);
 
   //===================> EVENTS
   const getDatas = async () => {
@@ -43,19 +48,19 @@ export const HomeScreen = () => {
 
   const requestRepoDatas = () => {
     dispatch(getReposRequest({ page: page }));
-    console.log(page);
   };
 
   const loadMoreData = () => {
-    const listEnded = useSelector(state => state.repos.moreLoading);
-    if (listEnded) {
+    if (!RepoList.isListEnd && !RepoList.moreLoading) {
       setPage(page + 1);
+      console.log('loaded more');
     }
   };
 
   //===================> USE EFFECT
   useEffect(() => {
     requestRepoDatas();
+    console.log('current Page:', page);
   }, [page]);
 
   //===================> VIEWS
@@ -77,9 +82,7 @@ export const HomeScreen = () => {
         placement="left"
       />
       {/* OPTIONAL:SORTING */}
-      {/* TODO: INTEGRATE WITH API */}
-      {/* PAGINATION */}
-      {loading ? (
+      {RepoList.loading ? (
         <ActivityIndicator
           size={60}
           color={COLORS.blue}
